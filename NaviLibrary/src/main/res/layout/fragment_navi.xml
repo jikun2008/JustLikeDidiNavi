@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlNavViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--重要警告:AMapNaviView可能会与下面的控件发生R.id的冲突
+        ，如果遇到问题后就慢慢解决吧。。。。。高德说SDK6.1版本可以解决，但是建议还是留心
+        -->
+        <com.amap.api.navi.AMapNaviView
+            android:id="@+id/naviView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/rlAllTitleNaviInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rlBigTitleontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#2d3038"
+                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                android:paddingTop="22dp"
+                tools:visibility="visible">
+
+
+                <com.amap.api.navi.view.NextTurnTipView
+                    android:id="@+id/nvBigTurnView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    tools:src="@drawable/sou0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/nvBigTurnView"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@+id/nvBigTurnView"
+                    android:layout_toRightOf="@+id/nvBigTurnView"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvBigDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp"
+                        tools:text="606米" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginStart="6dp"
+                        android:text="进入"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/nvBigTurnView"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@+id/nvBigTurnView"
+                    android:layout_toRightOf="@+id/nvBigTurnView">
+
+                    <TextView
+                        android:id="@+id/tvBigRoadName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        tools:text="天府大道北段" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBigRemain"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/nvBigTurnView"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tvBigRemainDistance"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="16sp"
+                        tools:text="剩余20公里" />
+
+                    <TextView
+                        android:id="@+id/tvBigRemainTime"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="16sp"
+                        tools:text="剩余20分钟" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvBigArriveTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/llBigRemain"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp"
+                    tools:text="预计11:00到达" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llLittleTitleContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#2d3038">
+
+                    <TextView
+                        android:id="@+id/tvLittleDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp"
+                        tools:text="177米后" />
+
+                    <com.amap.api.navi.view.NextTurnTipView
+                        android:id="@+id/nvLittleTurnView"
+                        android:layout_width="38dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        tools:src="@drawable/sou0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:text="进入"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvLittleRoadName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        tools:text="天府大道北段" />
+
+
+                </LinearLayout>
+
+                <com.amap.api.navi.view.ZoomInIntersectionView
+                    android:id="@+id/zmLittleInIntersectionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/tvSwichRoad"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_above="@+id/overviewButtonView"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/icon_switch_road_selector"
+            android:textColor="#303135"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/overviewButtonView"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_above="@+id/btn_Location"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/overview_bg_selector"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_Location"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/icon_location_btn"
+            android:gravity="center"
+            android:maxLines="1" />
+
+    </RelativeLayout>
+
+    <com.yisingle.navi.library.widget.LoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</RelativeLayout>
