@@ -12,7 +12,6 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.navi.AMapNaviViewOptions;
 import com.amap.api.navi.model.RouteOverlayOptions;
 import com.yisingle.navi.library.R;
-import com.yisingle.navi.library.utils.DpSpPxScreenUtils;
 
 
 /**
@@ -21,7 +20,6 @@ import com.yisingle.navi.library.utils.DpSpPxScreenUtils;
  */
 
 public class NaviOptionsUtils {
-
 
 
     /**
@@ -52,19 +50,7 @@ public class NaviOptionsUtils {
         //设置导航UI是否显示
         options.setLayoutVisible(false);
         //设置是否显示路口放大图(路口模型图)
-        options.setModeCrossDisplayShow(true);
-        /**
-         * 设置路口模型图的显示的位置。
-         * 模型图 相关方法 showModeCross(AMapModelCross aMapModelCross) hideModeCross()
-         * 模型图的显示 并不能使用showModeCross的AMapModelCross   ImageView加载图片来显示。
-         * 你必须使用setCrossLocation来设置模型图的显示位置
-         * 因为模型图在放在NaviView里面的。
-         * 路口放大图分为模型图和实景图。
-         * 这里设置的是模型图的位置.
-         * 实景图可通过自定义ZoomInIntersectionView进行设置.
-         */
-        Rect rect = new Rect(0, DpSpPxScreenUtils.dip2px(context,50), DpSpPxScreenUtils.getScreenWidth(context), DpSpPxScreenUtils.dip2px(context,210));
-        options.setCrossLocation(rect, rect);
+        options.setModeCrossDisplayShow(false);
         //设置导航状态下屏幕是否一直开启。
         options.setScreenAlwaysBright(true);
         //设置路况光柱条是否显示（只适用于驾车导航，需要联网）。
@@ -91,7 +77,11 @@ public class NaviOptionsUtils {
          */
         options.setLeaderLineEnabled(Color.RED);
         //设置6秒后是否自动锁车。
-        options.setAutoLockCar(true);
+        options.setAutoLockCar(false);
+        //设置全览方法的上下左右的范围
+        RouteOverlayOptions routeOverlayOptions = new RouteOverlayOptions();
+        routeOverlayOptions.setRect(new Rect(100, 400, 100, 100));
+        options.setRouteOverlayOptions(routeOverlayOptions);
         return options;
     }
 

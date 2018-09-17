@@ -20,7 +20,8 @@ public class NaviActivity extends AppCompatActivity {
         NaviActionData naviActionData = new NaviActionData.Builder()
                 //设置模拟导航
                 .setEmulatorNavi(true)
-                .build(new NaviLatLng(30.661825, 104.071228));
+                .setStartLatlng(new NaviLatLng(30.632952,103.994195))
+                .build(new NaviLatLng(30.583347,104.068396));
 
 
         NaviFragment naviFragment = NaviFragment.newInstance(naviActionData);

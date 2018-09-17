@@ -13,6 +13,7 @@ import com.amap.api.navi.AMapNavi;
 import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.AMapNaviViewOptions;
 import com.amap.api.navi.enums.BroadcastMode;
+import com.amap.api.navi.model.AMapModeCrossOverlay;
 import com.amap.api.navi.model.AMapNaviLocation;
 import com.amap.api.navi.model.NaviInfo;
 import com.amap.api.navi.model.NaviLatLng;
@@ -40,6 +41,9 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
      * NaviView上绘制的路线View
      */
     protected SimpleRouteView naviRouteView;
+
+
+    protected AMapModeCrossOverlay modeCrossOverlay;
 
 
     /**
@@ -80,6 +84,7 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
         }
         //用来设置UiSetting 一些 具体请在查看高德api文档
         if (null != getNaviView().getMap() && null != getNaviView().getMap().getUiSettings()) {
+            modeCrossOverlay=new AMapModeCrossOverlay(getContext(),getNaviView().getMap());
             getNaviView().getMap().setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
                 @Override
                 public void onMapLoaded() {

@@ -1,5 +1,6 @@
 package com.yisingle.navi.library.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.enums.NaviType;
 import com.amap.api.navi.enums.PathPlanningStrategy;
 import com.amap.api.navi.model.AMapCalcRouteResult;
+import com.amap.api.navi.model.AMapModeCrossOverlay;
 import com.amap.api.navi.model.AMapModelCross;
 import com.amap.api.navi.model.AMapNaviCross;
 import com.amap.api.navi.model.AMapNaviLocation;
@@ -479,7 +481,12 @@ public class NaviFragment extends BaseNaviFragment {
         Log.e("showModeCross", "test-showModeCross-----");
         //显示路口放大图回调(模型图)。 模型图需要在
         showModeLittleNaviInfo(true);
-        // zmLittleInIntersectionView.setImageResource(android.R.color.transparent);
+        modeCrossOverlay.createModelCrossBitMap(aMapModelCross.getPicBuf1(), new AMapModeCrossOverlay.OnCreateBitmapFinish() {
+            @Override
+            public void onGenerateComplete(Bitmap bitmap, int i) {
+                zmLittleInIntersectionView.setImageBitmap(bitmap);
+            }
+        });
 
     }
 
