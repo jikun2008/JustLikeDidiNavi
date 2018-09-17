@@ -570,15 +570,10 @@ public class NaviFragment extends BaseNaviFragment {
         if (null != getNaviView() && null != mAMapNavi) {
             overviewButtonView.setSelected(isdiplay);
             if (isdiplay) {
-                //这个地方有BUG暂时找不到解决的问题 BUG全览路线会被导航信息的UI遮盖  不影响主题功能
+                //全览模式
                 getNaviView().displayOverview();
-//                if (null != naviRouteView && null != naviRouteView.getRouteOverLay() && null != naviRouteView.getRouteOverLay().getAMapNaviPath()) {
-//
-//                    AMapNaviPath path = naviRouteView.getRouteOverLay().getAMapNaviPath();
-//                    moveCameraOnNaviView(path.getStartPoint(), path.getEndPoint(), rlAllTitleNaviInfo.getHeight());
-//                }
             } else {
-
+                //锁定自车模式
                 getNaviView().recoverLockMode();
                 mAMapNavi.resumeNavi();
             }
