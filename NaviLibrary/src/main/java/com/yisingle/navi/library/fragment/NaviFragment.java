@@ -467,6 +467,7 @@ public class NaviFragment extends BaseNaviFragment {
         zmLittleInIntersectionView.setImageBitmap(aMapNaviCross.getBitmap());
 
 
+
     }
 
     @Override
