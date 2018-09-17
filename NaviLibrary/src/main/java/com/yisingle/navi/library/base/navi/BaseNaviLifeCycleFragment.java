@@ -22,11 +22,11 @@ import com.autonavi.tbt.TrafficFacilityInfo;
 
 /**
  * @author jikun
- *         Created by jikun on 2018/3/30.
- *         导航NaviView生命周期实现Fragment
+ * Created by jikun on 2018/3/30.
+ * 导航NaviView生命周期实现Fragment
  */
 
-public abstract   class BaseNaviLifeCycleFragment extends Fragment implements AMapNaviListener {
+public abstract class BaseNaviLifeCycleFragment extends Fragment implements AMapNaviListener {
 
 
     private AMapNaviView naviView;
@@ -250,7 +250,6 @@ public abstract   class BaseNaviLifeCycleFragment extends Fragment implements AM
     public void onPlayRing(int i) {
 
     }
-
 
 
     @Override
