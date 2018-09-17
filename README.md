@@ -1,5 +1,6 @@
 # 用高德sdk做一个滴滴司机端的导航。
 
+## 主要的导航功能是在NaviFragment中。
 
 ### 第一步:集成高德sdk
 请看这篇文章
@@ -125,14 +126,168 @@
 ```
 
 
-### 第四步: 导航信息的显示。
+### 第四步: 导航信息的显示
  
-    导航信息就是包括剩余公里 预估时间
-    导航信息 需要我们展现出来如下图.
+#### 导航信息
+    包括剩余公里 预估时间等 需要我们展现出来如下图.
     
     
+![Alt text](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AF%BC%E8%88%AA%E6%95%88%E6%9E%9C%E5%9B%BE.png?raw=true)
+
+其实这些信息我们只需要到 AMapNaviListener 去实现 onNaviInfoUpdate(NaviInfo naviInfo) 就可以拿到
+
+代码如下
+```java
+    public void onNaviInfoUpdate(NaviInfo naviInfo) {
+        if (null != naviInfo) {
+            //获取当前路段剩余距离
+            int distance =naviInfo.getCurStepRetainDistance();
+            //下一个街道名称
+            String roadName = naviInfo.getNextRoadName();
+            //获取路线剩余距离(总的路程剩余距离)
+            int allDitance =naviInfo.getPathRetainDistance(); 
+            //获取路线剩余时间(总的路程剩余时间)
+            String allTime = naviInfo.getPathRetainTime()
+        
+            //获取导航转向图标类型
+            int iconType=naviInfo.getIconType()
+        }
+```
+
+#### 实景图与模型图。
+
+什么是实景图和模型图看下面的图片大家就明白了
+
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AE%9E%E6%99%AF%E5%9B%BE%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%9B%BE.png?raw=true)
+
+
+实景图和模型图的也是 需要在AMapNaviListener 中实现下面的方法就可以实现了
+
+
+
+```java
+
+   首先我们需要在
+    AMapNaviViewOptions options = getNaviView().getViewOptions();
+    //设置是否自动显示模型图 这里我们设置为false 
+    options.setModeCrossDisplayShow(false);
+    AMapNaviView.setViewOptions(options);
     
-![Alt text](http://pic1.win4000.com/wallpaper/e/526c9f87129d9.jpg)
+    @Override
+    public void showCross(AMapNaviCross aMapNaviCross) {
+        //实景图显示 回调
+
+        //展示实景图
+        zmLittleInIntersectionView.setImageBitmap(aMapNaviCross.getBitmap());
+
+
+    }
+
+    @Override
+    public void hideCross() {
+        //实景图隐藏 回调
+  
+       
+    }
+
+    @Override
+    public void showModeCross(AMapModelCross aMapModelCross) {
+     
+        //模型图显示  回调
+
+        //展示模型图
+        modeCrossOverlay.createModelCrossBitMap(aMapModelCross.getPicBuf1(), new AMapModeCrossOverlay.OnCreateBitmapFinish() {
+            @Override
+            public void onGenerateComplete(Bitmap bitmap, int i) {
+                zmLittleInIntersectionView.setImageBitmap(bitmap);
+            }
+        });
+
+    }
+
+    @Override
+    public void hideModeCross() {
+    
+        //模型图隐藏 回调
+        
+    }
+
+```
+
+###  锁定自车与全览。
+
+
+
+
+
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E9%94%81%E5%AE%9A%E8%87%AA%E8%BD%A6%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%85%A8%E8%A7%88%E6%A8%A1%E5%BC%8F.gif?raw=true)
+
+
+可以看到 当我们点击全览按钮的时候调用 displayOverview()方法   从锁定自车模式进入了全览路线的模式
+
+点击定位按钮的时候 调用 recoverLockMode()方法进入锁车模式
+方法 如下
+```java
+
+    //恢复锁车状态:用于用户主动恢复之前的导航锁车状态（比如从全览画面，挪动地图后画面返回）
+    AMapNaviView.recoverLockMode();
+         
+  
+    //全览可以通过下面的方式设置全览方法的上下左右的范围
+    AMapNaviViewOptions options = getNaviView().getViewOptions();
+    RouteOverlayOptions routeOverlayOptions = new RouteOverlayOptions();
+    //int left, int top, int right, int bottom
+    routeOverlayOptions.setRect(new Rect(100, 400, 100, 100));
+    options.setRouteOverlayOptions(routeOverlayOptions);
+    AMapNaviView.setViewOptions(options);
+    //
+    
+    //全览模式  展示全览：成功算路获得路径之后，可将地图缩放到完全展示该路径
+    AMapNaviView.displayOverview();
+
+```
+
+
+### 导航路线上箭头和走过的灰色路线。
+
+请看下图:
+
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E7%AE%AD%E5%A4%B4%E5%92%8C%E8%B5%B0%E8%BF%87%E7%9A%84%E7%81%B0%E8%89%B2%E8%B7%AF%E7%BA%BF.png?raw=true)
+
+
+这两个效果的实现都要使用 RouteOverLay中的drawArrow方法和 updatePolyline方法
+并且要与AMapNaviListener 中的 
+onNaviInfoUpdate(NaviInfo naviInfo), 
+onLocationChange(AMapNaviLocation aMapNaviLocation)  
+配合使用
+
+
+```java
+
+
+    @Override
+    public void onNaviInfoUpdate(NaviInfo naviInfo) {
+        List<NaviLatLng> naviLatLngList = routeOverLay.getArrowPoints(naviInfo.getCurStep());
+        //画导航的箭头。
+        routeOverLay.drawArrow(naviLatLngList);
+    }
+
+    @Override
+    public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
+        super.onLocationChange(aMapNaviLocation);
+        //画走过的灰色路线
+        routeOverLay.updatePolyline(naviLocation);
+    }
+
+
+
+```
+
+
+### 结束  
+    好了,总体的流程都介绍完了，还有细节大家可以看下文档 或者 NaviFragment中的代码。
+
+        
     
     
   
