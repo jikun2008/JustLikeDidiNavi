@@ -1,28 +1,39 @@
 # 用高德sdk做一个滴滴司机端的导航。
 
-## 主要的导航功能是在NaviFragment中。
+> 主要的导航功能是在NaviFragment中。
 
-### 第一步:集成高德sdk
+## 第一步:集成高德sdk
 请看这篇文章
 [集成Android高德SDK](https://github.com/jikun2008/CustomNaviByGaode/blob/master/%E7%94%B3%E8%AF%B7%E9%AB%98%E5%BE%B7sdk%E7%9A%84ApiKey%E7%9A%84%E6%AD%A5%E9%AA%A4.md)
 
 
-### 第二步:集成好高德sdk后。我们先了解四个重要的类和它们的一些重要方法。
+## 第二步:四个重要的类
 
 
-
-#### 1. AMapNaviView 导航地图控件。
-> 导航路线都是在这个上面绘制的
+**1.AMapNaviView 导航地图控件,导航路线都是在这个上面绘制的**
+ 
 
 ```java
     //AMapNaviView一些重要方法
     //获取绘制路线所需的Amap类。
     AMapNaviView.getMap()。
+    
+    AMapNaviView有生命周期方法 需要我们和Activity或者Fragment的生命周期保持一致。
+    
+    AMapNaviView.onCreate(savedInstanceState)。在Activity的onCreate调用 在Fragment的onViewCreate调用
+    
+    AMapNaviView.onResume();   在Activity或者Fragment的onCreate中调用
+    
+    AMapNaviView.onPause();    在Activity或者Fragment的onPause中调用
 
+    AMapNaviView.onDestory();  在Activity或者Fragment的onDestory中调用
+    
+    提示:AMapNaviView是没有onStop方法的,所以不用写。
 ```
 
 
-#### 2. RouteOverLay  用来在AMapNaviView上绘制导航的路线的类。
+**2. RouteOverLay  用来在AMapNaviView上绘制导航的路线的类**
+
 ```java
    //RouteOverLay一些重要方法
    //根据数据创建一个RouteOverLay
@@ -32,7 +43,7 @@
 
 ```
 
-#### 3. AMapNavi 导航功能类。(这个类是单例模式的) 
+**3. AMapNavi 导航功能类。(这个类是单例模式的)** 
 
 
 ```java
@@ -47,7 +58,7 @@
 ```
 
 
-#### 4. AMapNaviListener 导航信息监听类。
+**4. AMapNaviListener 导航信息监听类**
 
 ```java
     //可以通过AMapNavi.addAMapNaviListener(AMapNaviListener)
@@ -64,7 +75,24 @@
     }
 
 ```
-### 第三步: 如何使用这4个类。先写个简单的流程。
+
+**四种触发AMapNaviListener的回调方法onCalculateRouteSuccess 或onCalculateRouteFailure的情况**
+    
+     
+- 第一种情况: 我们主动调用AMapNavi.calculateDriveRoute()方法。前面已经介绍过了。
+     
+     
+- 第二种情况: 我们主动调用AMapNavi.switchParallelRoad()方法。(切换主路或辅路) AMapNaviListener 可以通过notifyParallelRoad(int parallelRoadType)告诉我们是在主路还是在辅路上。
+     
+     
+- 第三种情况: SDK内部通过AMapNaviListener的回调方法onReCalculateRouteForYaw()通知我们准备开始偏航了重新计算路线，
+     这个时候也回调onCalculateRouteSuccess或onCalculateRouteFailure。
+     
+- 第四种情况: SDK内部通过AMapNaviListener的回调方法onReCalculateRouteForTrafficJam()方法通知我们准备开始拥堵重新计算路线，
+    这个时候也会回调onCalculateRouteSuccess或onCalculateRouteFailure。
+    （非常拥堵重新计算路线这种况其实非常少见）
+    
+## 第三步: 如何使用这4个类。先写个简单的流程。
 
 ```
 //获取AMapNaviView地图view
@@ -126,17 +154,16 @@
 ```
 
 
-### 第四步: 导航信息的显示
+## 第四步: 导航信息的显示
  
-#### 导航信息
-    包括剩余公里 预估时间等 需要我们展现出来如下图.
+**导航信息:包括剩余公里 预估时间等 需要我们展现出来如下图。**
     
     
 ![Alt text](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AF%BC%E8%88%AA%E6%95%88%E6%9E%9C%E5%9B%BE.png?raw=true)
 
-其实这些信息我们只需要到 AMapNaviListener 去实现 onNaviInfoUpdate(NaviInfo naviInfo) 就可以拿到
+> 其实这些信息我们只需要到 AMapNaviListener 去实现 onNaviInfoUpdate(NaviInfo naviInfo) 就可以拿到
 
-代码如下
+代码如下:
 ```java
     public void onNaviInfoUpdate(NaviInfo naviInfo) {
         if (null != naviInfo) {
@@ -156,7 +183,7 @@
 
 #### 实景图与模型图。
 
-什么是实景图和模型图看下面的图片大家就明白了
+> 什么是实景图和模型图看下面的图片大家就明白了
 
 ![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AE%9E%E6%99%AF%E5%9B%BE%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%9B%BE.png?raw=true)
 
@@ -216,17 +243,21 @@
 
 ###  锁定自车与全览。
 
+> 什么是锁定自车和全览 
 
+
+请看下图:
 
 
 
 ![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E9%94%81%E5%AE%9A%E8%87%AA%E8%BD%A6%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%85%A8%E8%A7%88%E6%A8%A1%E5%BC%8F.gif?raw=true)
 
 
-可以看到 当我们点击全览按钮的时候调用 displayOverview()方法   从锁定自车模式进入了全览路线的模式
-
+> 可以看到 当我们点击全览按钮的时候调用 displayOverview()方法   从锁定自车模式进入了全览路线的模式
 点击定位按钮的时候 调用 recoverLockMode()方法进入锁车模式
-方法 如下
+
+方法如下
+
 ```java
 
     //恢复锁车状态:用于用户主动恢复之前的导航锁车状态（比如从全览画面，挪动地图后画面返回）
@@ -255,11 +286,13 @@
 ![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E7%AE%AD%E5%A4%B4%E5%92%8C%E8%B5%B0%E8%BF%87%E7%9A%84%E7%81%B0%E8%89%B2%E8%B7%AF%E7%BA%BF.png?raw=true)
 
 
-这两个效果的实现都要使用 RouteOverLay中的drawArrow方法和 updatePolyline方法
+> 这两个效果的实现都要使用 RouteOverLay中的drawArrow方法和 updatePolyline方法
 并且要与AMapNaviListener 中的 
 onNaviInfoUpdate(NaviInfo naviInfo), 
 onLocationChange(AMapNaviLocation aMapNaviLocation)  
 配合使用
+
+代码如下:
 
 
 ```java
@@ -284,8 +317,29 @@ onLocationChange(AMapNaviLocation aMapNaviLocation)
 ```
 
 
-### 结束  
-    好了,总体的流程都介绍完了，还有细节大家可以看下文档 或者 NaviFragment中的代码。
+## 结束  
+
+在这里我大概介绍完了总体流程,
+
+其实还有一个切换主路辅路功能没介绍,
+
+当然还有很多细节问题，可以看下代码我写了很多注释。很简单
+
+[高德导航sdk文档](http://a.amap.com/lbs/static/unzip/Android_Navi_Doc/index.html)
+
+或者看下这个工程的代码,主要代码在NaviFragment中。
+
+
+谢谢大家
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+    
+
+    
+
+    
 
         
     
