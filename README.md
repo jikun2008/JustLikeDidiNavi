@@ -2,6 +2,7 @@
 
 > 主要的导航功能是在NaviFragment中。
 
+
 ## 第一步:集成高德sdk
 请看这篇文章
 [集成Android高德SDK](https://github.com/jikun2008/CustomNaviByGaode/blob/master/%E7%94%B3%E8%AF%B7%E9%AB%98%E5%BE%B7sdk%E7%9A%84ApiKey%E7%9A%84%E6%AD%A5%E9%AA%A4.md)
@@ -328,6 +329,8 @@ onLocationChange(AMapNaviLocation aMapNaviLocation)
 [高德导航sdk文档](http://a.amap.com/lbs/static/unzip/Android_Navi_Doc/index.html)
 
 或者看下这个工程的代码,主要代码在NaviFragment中。
+
+[源码github](https://github.com/jikun2008/JustLikeDidiNavi)
 
 
 谢谢大家
