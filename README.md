@@ -2,6 +2,13 @@
 
 > 主要的导航功能是在NaviFragment中。
 
+效果如下:
+
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E9%94%81%E5%AE%9A%E8%87%AA%E8%BD%A6%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%85%A8%E8%A7%88%E6%A8%A1%E5%BC%8F.gif?raw=true)
+
+下载apk:
+
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E4%B8%8B%E8%BD%BDapk%E5%9B%BE%E7%89%87.png?raw=true)
 
 ## 第一步:集成高德sdk
 请看这篇文章
