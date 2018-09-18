@@ -4,7 +4,7 @@
 
 效果如下:
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E9%94%81%E5%AE%9A%E8%87%AA%E8%BD%A6%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%85%A8%E8%A7%88%E6%A8%A1%E5%BC%8F.gif?raw=true)
+![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.gif?raw=true)
 
 下载apk:
 
