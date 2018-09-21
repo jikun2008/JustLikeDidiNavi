@@ -6,9 +6,13 @@
 
 ![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.gif?raw=true)
 
-下载apk:
+下载apk:[下载地址](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/app-debug.apk)
+
+扫一扫下载apk
 
 ![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E4%B8%8B%E8%BD%BDapk%E5%9B%BE%E7%89%87.png?raw=true)
+
+
 
 ## 第一步:集成高德sdk
 请看这篇文章
