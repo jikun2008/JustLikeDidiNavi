@@ -30,17 +30,23 @@
     //获取绘制路线所需的Amap类。
     AMapNaviView.getMap()。
     
-    AMapNaviView有生命周期方法 需要我们和Activity或者Fragment的生命周期保持一致。
+    //需要我们和Activity或者Fragment的生命周期保持一致。
+    AMapNaviView有生命周期方法 
     
-    AMapNaviView.onCreate(savedInstanceState)。在Activity的onCreate调用 在Fragment的onViewCreate调用
+    //在Activity的onCreate调用 在Fragment的onViewCreate调用
+    AMapNaviView.onCreate(savedInstanceState)。
     
-    AMapNaviView.onResume();   在Activity或者Fragment的onCreate中调用
+    //在Activity或者Fragment的onCreate中调用
+    AMapNaviView.onResume();   
     
-    AMapNaviView.onPause();    在Activity或者Fragment的onPause中调用
+    //在Activity或者Fragment的onPause中调用
+    AMapNaviView.onPause();    
 
-    AMapNaviView.onDestory();  在Activity或者Fragment的onDestory中调用
+    //在Activity或者Fragment的onDestory中调用
+    //提示:AMapNaviView是没有onStop方法的,所以不用写。
+    AMapNaviView.onDestory();  
     
-    提示:AMapNaviView是没有onStop方法的,所以不用写。
+    
 ```
 
 
