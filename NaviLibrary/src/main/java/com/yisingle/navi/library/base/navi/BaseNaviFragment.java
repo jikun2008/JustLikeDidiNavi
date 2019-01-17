@@ -51,6 +51,22 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
      * 初始化导航对象 NaviView和这个关系重要。
      */
     protected void initAMapNavi() {
+
+
+        //使用离线语音
+        AMapNavi.setUseOfflineVoice(true);
+        /**
+         * setIgnoreWifiCheck是否允许移动网络下载离线语音dex，默认为不允许,请在对象初始化前调用
+         * 参数:
+         * isgnore - true 允许，false 不允许
+         *
+         * 1.请注意 NaviSetting类 中也有两个static方法  	setIgnoreWifi(boolean isgnore)和setUseOfflineVoice(boolean useOffline)
+         * 跟AMapNavi方法是一样的没有区别。记住这两个方法  AMapNavi初始化之前调用。
+         *
+         *
+         * 2.请注意由于司机不经常连接wifi  所以应该允许在移动网络情况下,下载语音包 下载功能已经由高德sdk内部实现了
+         */
+        AMapNavi.setIgnoreWifiCheck(true);
         //请注意这个是单例模式
         mAMapNavi = AMapNavi.getInstance(getContext());
         //1-CONCISE 专家播报 简洁播报（播报更精简，建议老司机使用）
@@ -84,7 +100,7 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
         }
         //用来设置UiSetting 一些 具体请在查看高德api文档
         if (null != getNaviView().getMap() && null != getNaviView().getMap().getUiSettings()) {
-            modeCrossOverlay=new AMapModeCrossOverlay(getContext(),getNaviView().getMap());
+            modeCrossOverlay = new AMapModeCrossOverlay(getContext(), getNaviView().getMap());
             getNaviView().getMap().setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
                 @Override
                 public void onMapLoaded() {
