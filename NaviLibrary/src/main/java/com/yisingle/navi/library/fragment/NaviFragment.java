@@ -263,7 +263,7 @@ public class NaviFragment extends BaseNaviFragment {
         if (null != currentNaviActionData) {
 
             naviPathPlanUi(currentNaviActionData.getStartLatlng(),
-                    currentNaviActionData.getEndLatlng(), PathPlanningStrategy.DRIVING_AVOID_CONGESTION);
+                    currentNaviActionData.getEndLatlng(), PathPlanningStrategy.DRIVING_DEFAULT);
         }
 
     }
