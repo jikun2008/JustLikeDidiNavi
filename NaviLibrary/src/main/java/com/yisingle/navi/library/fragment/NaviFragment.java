@@ -441,7 +441,10 @@ public class NaviFragment extends BaseNaviFragment {
 
             tvBigDistance.setText(distance);
             tvBigRoadName.setText(roadName);
-            nvBigTurnView.setIconType(naviInfo.getIconType());
+
+
+            nvBigTurnView.setIconBitmap(naviInfo.getIconBitmap());
+
             tvBigRemainDistance.setText(allditance);
             tvBigRemainTime.setText(allTime);
             tvBigArriveTime.setText(arriverTime);
@@ -449,9 +452,7 @@ public class NaviFragment extends BaseNaviFragment {
 
             tvLittleDistance.setText(distance);
             tvLittleRoadName.setText(roadName);
-            nvLittleTurnView.setIconType(naviInfo.getIconType());
-
-
+            nvLittleTurnView.setIconBitmap(naviInfo.getIconBitmap());
             //画导航路线上的箭头
             drawArrow(naviInfo);
 
@@ -465,7 +466,6 @@ public class NaviFragment extends BaseNaviFragment {
         showModeLittleNaviInfo(true);
         //展示实景图
         zmLittleInIntersectionView.setImageBitmap(aMapNaviCross.getBitmap());
-
 
 
     }

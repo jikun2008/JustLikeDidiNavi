@@ -40,8 +40,8 @@
 
                 <com.amap.api.navi.view.NextTurnTipView
                     android:id="@+id/nvBigTurnView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     tools:src="@drawable/sou0" />
