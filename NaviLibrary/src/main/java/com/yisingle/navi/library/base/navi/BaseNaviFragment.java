@@ -93,6 +93,7 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
         if (null != getNaviView() && null != getNaviView().getViewOptions()) {
             //获取NaviViewOptions的参数对象。
             AMapNaviViewOptions options = getNaviView().getViewOptions();
+            options.setAfterRouteAutoGray(true);
             //设置NaviViewOptions的参数对象
             getNaviView().setViewOptions(NaviOptionsUtils.configureOptions(getContext(), options));
             //调用NaviView的生命周期

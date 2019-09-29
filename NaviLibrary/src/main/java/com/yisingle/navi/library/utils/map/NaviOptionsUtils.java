@@ -79,7 +79,7 @@ public class NaviOptionsUtils {
         //设置6秒后是否自动锁车。
         options.setAutoLockCar(false);
         //设置全览方法的上下左右的范围
-        RouteOverlayOptions routeOverlayOptions = new RouteOverlayOptions();
+        RouteOverlayOptions routeOverlayOptions = generateOptions(context.getResources());
         routeOverlayOptions.setRect(new Rect(100, 400, 100, 100));
         options.setRouteOverlayOptions(routeOverlayOptions);
         return options;
@@ -95,21 +95,25 @@ public class NaviOptionsUtils {
 
         //请一定这样加载图片 不然地图上的路线会不清楚。(谨记)
         //默认的路线纹理位图和交通状况未知下的纹理位图
-        BitmapDescriptor unknownTraffic = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_no);
+        BitmapDescriptor unknownTraffic = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_nodata);
         //路线中白色小箭头图片
-        BitmapDescriptor arrowOnRoute = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_aolr);
+        BitmapDescriptor arrowOnRoute = BitmapDescriptorFactory.fromResource(R.drawable.map_aolr);
         //交通状况情况良好下的纹理位图
-        BitmapDescriptor smoothTraffic = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_green);
+        BitmapDescriptor smoothTraffic = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_green);
         //交通状况迟缓下的纹理位图
-        BitmapDescriptor slowTraffic = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_slow);
+        BitmapDescriptor slowTraffic = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_slow);
         //交通状况拥堵下的纹理位图
-        BitmapDescriptor jamTraffic = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_bad);
+        BitmapDescriptor jamTraffic = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_bad);
         //交通状况非常拥堵下的纹理位图
-        BitmapDescriptor veryJamTraffic = BitmapDescriptorFactory.fromResource(R.drawable.custtexture_grayred);
+        BitmapDescriptor veryJamTraffic = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_darkred);
+
+        //设置走过路线的纹理位图
+        BitmapDescriptor passRoute = BitmapDescriptorFactory.fromResource(R.drawable.map_lr_pass_route);
+
         RouteOverlayOptions options = new RouteOverlayOptions();
         //设置绘制路线宽度 要根据手机密度来设置
         //否则 有些手机显示的路线太小
-        options.setLineWidth(24 * resources.getDisplayMetrics().density);
+        options.setLineWidth(28 * resources.getDisplayMetrics().density);
 
 
         //设置默认的路线纹理位图（未开启路况时）。
@@ -133,8 +137,12 @@ public class NaviOptionsUtils {
         //设置交通状况非常拥堵下的纹理位图
         options.setVeryJamTraffic(veryJamTraffic.getBitmap());
 
+        //设置走过路线的纹理位图
+        options.setPassRoute(passRoute.getBitmap());
+
         //设置转弯的箭头颜色
-        // options.setArrowColor(resources.getColor(R.color.white));
+        //options.setArrowColor(resources.getColor());
+
 
         return options;
 
