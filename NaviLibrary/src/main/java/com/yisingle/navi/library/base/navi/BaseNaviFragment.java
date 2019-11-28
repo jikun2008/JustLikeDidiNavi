@@ -12,6 +12,7 @@ import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.navi.AMapNavi;
 import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.AMapNaviViewOptions;
+import com.amap.api.navi.NaviSetting;
 import com.amap.api.navi.enums.BroadcastMode;
 import com.amap.api.navi.model.AMapModeCrossOverlay;
 import com.amap.api.navi.model.AMapNaviLocation;
@@ -53,8 +54,6 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
     protected void initAMapNavi() {
 
 
-        //使用离线语音
-        AMapNavi.setUseOfflineVoice(true);
         /**
          * setIgnoreWifiCheck是否允许移动网络下载离线语音dex，默认为不允许,请在对象初始化前调用
          * 参数:
@@ -66,17 +65,21 @@ public abstract class BaseNaviFragment extends BaseNaviLifeCycleFragment {
          *
          * 2.请注意由于司机不经常连接wifi  所以应该允许在移动网络情况下,下载语音包 下载功能已经由高德sdk内部实现了
          */
-        AMapNavi.setIgnoreWifiCheck(true);
+        //NaviSetting.setIgnoreWifi(true);
+        //NaviSetting.setUseOfflineVoice(true);
         //请注意这个是单例模式
         mAMapNavi = AMapNavi.getInstance(getContext());
+        //可通过setUseInnerVoice(true) 开启内置语音功能。方法如下：
+        mAMapNavi.setUseInnerVoice(true,true);
         //1-CONCISE 专家播报 简洁播报（播报更精简，建议老司机使用）
         //2-DETAIL 新手播报 详细播报（更关注变道提醒，安全提示
         mAMapNavi.setBroadcastMode(BroadcastMode.DETAIL);
         //添加导航监听器
         mAMapNavi.addAMapNaviListener(this);
-        // 使用5 .7 .0 导航版本 2018 年01月10日更新的内置语音导航
-        //导航可以使用内部语音导航, 但是暂时不做修改
-        mAMapNavi.setUseInnerVoice(true);
+
+
+
+
 
 
     }
