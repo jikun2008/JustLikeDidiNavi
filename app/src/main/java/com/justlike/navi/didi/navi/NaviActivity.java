@@ -19,9 +19,9 @@ public class NaviActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navi);
 
 
-        DPoint dPoint = AMapConverterUtils.convert(getApplicationContext(),31.242220850077814, 121.50768196963547);
+        DPoint dPoint = AMapConverterUtils.convert(getApplicationContext(), TestConstant.start.latitude,TestConstant.start.longitude);
 
-        DPoint dPoint1 = AMapConverterUtils.convert(getApplicationContext(), 31.182079, 121.523099);
+        DPoint dPoint1 = AMapConverterUtils.convert(getApplicationContext(),  TestConstant.end.latitude, TestConstant.end.longitude);
         NaviLatLng start = new NaviLatLng(dPoint.getLatitude(), dPoint.getLongitude());
 
         NaviLatLng end = new NaviLatLng(dPoint1.getLatitude(), dPoint1.getLongitude());

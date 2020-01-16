@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/btNavi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="去导航界面"
@@ -15,5 +16,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/btNavi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:onClick="toNaviRouteActivity"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="使用导航组件"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </android.support.constraint.ConstraintLayout>

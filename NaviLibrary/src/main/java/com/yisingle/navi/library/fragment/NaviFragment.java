@@ -263,7 +263,7 @@ public class NaviFragment extends BaseNaviFragment {
         if (null != currentNaviActionData) {
 
             naviPathPlanUi(currentNaviActionData.getStartLatlng(),
-                    currentNaviActionData.getEndLatlng(), PathPlanningStrategy.DRIVING_DEFAULT);
+                    currentNaviActionData.getEndLatlng(), PathPlanningStrategy.DRIVING_MULTIPLE_ROUTES_DEFAULT);
         }
 
     }
@@ -505,7 +505,7 @@ public class NaviFragment extends BaseNaviFragment {
     public void startNavi() {
         if (null != mAMapNavi) {
             mAMapNavi.stopNavi();
-            mAMapNavi.setEmulatorNaviSpeed(90);
+            mAMapNavi.setEmulatorNaviSpeed(200);
             if (currentNaviActionData.isEmulatorNavi()) {
                 mAMapNavi.startNavi(NaviType.EMULATOR);
             } else {
