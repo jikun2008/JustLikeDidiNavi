@@ -4,13 +4,13 @@
 
 效果如下:
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.gif?raw=true)
+![image](https://user-gold-cdn.xitu.io/2018/9/18/165eaecd1990b142?w=400&h=711&f=gif&s=583495)
 
 下载apk:[下载地址](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/app-debug.apk)
 
 扫一扫下载apk
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E4%B8%8B%E8%BD%BDapk%E5%9B%BE%E7%89%87.png?raw=true)
+![image](https://user-gold-cdn.xitu.io/2018/9/18/165eae455c9ec4b0?w=300&h=300&f=png&s=2653)
 
 
 
@@ -30,13 +30,12 @@
     //获取绘制路线所需的Amap类。
     AMapNaviView.getMap()。
     
-    //需要我们和Activity或者Fragment的生命周期保持一致。
-    AMapNaviView有生命周期方法 
-    
+  
+    //AMapNaviView有生命周期方法 //需要我们和Activity或者Fragment的生命周期保持一致。
     //在Activity的onCreate调用 在Fragment的onViewCreate调用
     AMapNaviView.onCreate(savedInstanceState)。
     
-    //在Activity或者Fragment的onCreate中调用
+    //在Activity或者Fragment的onResume中调用
     AMapNaviView.onResume();   
     
     //在Activity或者Fragment的onPause中调用
@@ -46,7 +45,7 @@
     //提示:AMapNaviView是没有onStop方法的,所以不用写。
     AMapNaviView.onDestory();  
     
-    
+   
 ```
 
 
@@ -177,7 +176,7 @@
 **导航信息:包括剩余公里 预估时间等 需要我们展现出来如下图。**
     
     
-![Alt text](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AF%BC%E8%88%AA%E6%95%88%E6%9E%9C%E5%9B%BE.png?raw=true)
+![Alt text](https://user-gold-cdn.xitu.io/2018/9/18/165ead5f9d655798?w=401&h=712&f=png&s=174389)
 
 > 其实这些信息我们只需要到 AMapNaviListener 去实现 onNaviInfoUpdate(NaviInfo naviInfo) 就可以拿到
 
@@ -203,7 +202,7 @@
 
 > 什么是实景图和模型图看下面的图片大家就明白了
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E5%AE%9E%E6%99%AF%E5%9B%BE%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%9B%BE.png?raw=true)
+![image](https://user-gold-cdn.xitu.io/2018/9/18/165ead5f97f533d2?w=500&h=403&f=png&s=166185)
 
 
 实景图和模型图的也是 需要在AMapNaviListener 中实现下面的方法就可以实现了
@@ -268,7 +267,7 @@
 
 
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E9%94%81%E5%AE%9A%E8%87%AA%E8%BD%A6%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%85%A8%E8%A7%88%E6%A8%A1%E5%BC%8F.gif?raw=true)
+![image](https://user-gold-cdn.xitu.io/2018/9/18/165ead5f98d67152?w=400&h=711&f=gif&s=501075)
 
 
 > 可以看到 当我们点击全览按钮的时候调用 displayOverview()方法   从锁定自车模式进入了全览路线的模式
@@ -301,7 +300,7 @@
 
 请看下图:
 
-![image](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/%E7%AE%AD%E5%A4%B4%E5%92%8C%E8%B5%B0%E8%BF%87%E7%9A%84%E7%81%B0%E8%89%B2%E8%B7%AF%E7%BA%BF.png?raw=true)
+![image](https://user-gold-cdn.xitu.io/2018/9/18/165ead5f9a024ea8?w=450&h=400&f=png&s=148191)
 
 
 > 这两个效果的实现都要使用 RouteOverLay中的drawArrow方法和 updatePolyline方法
