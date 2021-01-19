@@ -4,7 +4,7 @@
 
 效果如下:
 
-![image](https://user-gold-cdn.xitu.io/2018/9/18/165eaecd1990b142?w=400&h=711&f=gif&s=583495)
+![image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d6607cd32bc47ddaa8997e493a63d69~tplv-k3u1fbpfcp-watermark.image)
 
 下载apk:[下载地址](https://github.com/jikun2008/JustLikeDidiNavi/blob/master/pic/app-debug.apk)
 
