@@ -10,6 +10,10 @@ android {
         versionName "1.0"
         multiDexEnabled true     //第一步
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters "armeabi"
+        }
     }
 
     signingConfigs {
